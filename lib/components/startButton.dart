@@ -4,8 +4,20 @@ import 'package:questionnaire/constants.dart';
 class StartButton extends StatelessWidget {
   final String label;
   final Function onPress;
+  final double margin;
+  final double padding;
+  final double fontSize;
+  final String fontFamily;
+  final double borderRadius;
 
-  StartButton({this.label, this.onPress});
+  StartButton(
+      {this.label,
+      this.fontSize,
+      this.padding,
+      this.margin,
+      this.fontFamily,
+      this.borderRadius,
+      this.onPress});
 
   @override
   Widget build(BuildContext context) {
@@ -15,22 +27,21 @@ class StartButton extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(40.0),
+          borderRadius: BorderRadius.circular(borderRadius),
           color: Constants.mainAppColor,
         ),
         child: Center(
           child: Text(
             label,
             style: TextStyle(
-              fontFamily: 'Bitter',
-              fontSize: 28.0,
-              fontWeight: FontWeight.bold,
+              fontFamily: fontFamily,
+              fontSize: fontSize,
               color: Colors.white,
             ),
           ),
         ),
-        margin: EdgeInsets.all(40.0),
-        height: Constants.kButtonHeight,
+        margin: EdgeInsets.only(bottom: margin, left: margin, right: margin),
+        padding: EdgeInsets.all(padding),
       ),
     );
   }
