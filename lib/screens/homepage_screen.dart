@@ -32,69 +32,70 @@ class HomePageState extends State<HomePage> {
   }
 
   _buildBody() {
-    return Stack(
-      children: <Widget>[
-        Column(
-          children: <Widget>[
-            Flexible(
-              flex: 6,
-              fit: FlexFit.tight,
-              child: Stack(
+    return SafeArea(
+      top: false,
+      bottom: true,
+      child: Stack(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Flexible(
+                flex: 6,
+                fit: FlexFit.tight,
+                child: Stack(
+                  children: <Widget>[
+                    _buildPageView(),
+                  ],
+                ),
+              ),
+              Column(
                 children: <Widget>[
-                  _buildPageView(),
-                ],
+                  _buildCircleIndicator(),
+                ]
+                    .map(
+                      (item) => Padding(
+                        child: item,
+                        padding: EdgeInsets.all(10.0),
+                      ),
+                    )
+                    .toList(),
               ),
-            ),
-            Column(
-              children: <Widget>[
-                _buildCircleIndicator(),
-              ]
-                  .map(
-                    (item) => Padding(
-                      child: item,
-                      padding: EdgeInsets.all(10.0),
-                    ),
-                  )
-                  .toList(),
-            ),
-            StartButton(
-              label: 'WEITER',
-              margin: 16.0,
-              padding: 16.0,
-              borderRadius: 44.0,
-              fontSize: 16.0,
-              onPress: () {
-                setState(() {
-                  if (_pageController.page < _items.length - 1) {
-                    _pageController.nextPage(
-                        duration: Duration(milliseconds: 400),
-                        curve: Curves.easeInCubic);
-                  } else {
-                    print('send!!!');
-                  }
-                });
-              },
-            ),
-            SizedBox(
-              height: 20,
-            ),
-          ],
-        ),
-        Align(
-          alignment: Alignment(-1.15, -0.92),
-          child: FlatButton(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              child: Icon(
-                Icons.arrow_back_ios,
-                size: 12,
-                color: Colors.black87,
+              StartButton(
+                label: 'WEITER',
+                margin: 16.0,
+                padding: 16.0,
+                borderRadius: 44.0,
+                fontSize: 16.0,
+                onPress: () {
+                  setState(() {
+                    if (_pageController.page < _items.length - 1) {
+                      _pageController.nextPage(
+                          duration: Duration(milliseconds: 400),
+                          curve: Curves.easeInCubic);
+                    } else {
+                      print('send!!!');
+                    }
+                  });
+                },
               ),
-              onPressed: () {
-                Navigator.pop(context);
-              }),
-        ),
-      ],
+            ],
+          ),
+          Align(
+            alignment: Alignment(-1.15, -0.92),
+            child: FlatButton(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  size: 12,
+                  color: Colors.black87,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                }),
+          ),
+        ],
+      ),
     );
   }
 
