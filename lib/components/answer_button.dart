@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:questionnaire/constants.dart';
 
-class AnswerWidget extends StatelessWidget {
-  final bool isChecked;
+class AnswerButton extends StatefulWidget {
   final String label;
   final Function onPress;
 
-  AnswerWidget({this.isChecked, this.label, this.onPress});
+  AnswerButton({this.label, this.onPress});
 
+  @override
+  _AnswerButtonState createState() => _AnswerButtonState();
+}
+
+class _AnswerButtonState extends State<AnswerButton> {
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        onPress();
+        widget.onPress();
+        setState(() {
+          isChecked = !isChecked;
+        });
       },
       child: Container(
         margin: EdgeInsets.all(4.0),
@@ -45,7 +53,7 @@ class AnswerWidget extends StatelessWidget {
                   Container(
                     width: MediaQuery.of(context).size.width - 80,
                     child: Text(
-                      label,
+                      widget.label,
                       maxLines: 4,
                       textAlign: TextAlign.left,
                       overflow: TextOverflow.ellipsis,
