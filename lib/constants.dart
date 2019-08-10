@@ -6,7 +6,7 @@ class Constants {
   static const inactivePageIndicatorColor = Color(0xFFDAECE2);
   static const answerColor = Color(0xFFF9F6ED);
   static Map<String, dynamic> defaultConfig = {
-    'goals': 'test', //'Welche persönlichen Ziele möchtest du verfolgen?',
+    'goals': 'Welche persönlichen Ziele möchtest du verfolgen?',
     'support_goals':
         'Womit soll dich dein persönlicher Ernährungscoach beim erreichen deiner Ziele unterstützen?',
     'eating_habits': 'Wie sehen deine Essgewohnheiten aus?',

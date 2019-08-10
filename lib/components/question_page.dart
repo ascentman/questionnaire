@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:questionnaire/components/answer_button.dart';
-import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:questionnaire/constants.dart';
 
 class QuestionPage extends StatelessWidget {
   final int index;
-  final RemoteConfig remoteConfig;
 
-  QuestionPage({this.index, this.remoteConfig});
+  QuestionPage({this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +34,7 @@ class QuestionPage extends StatelessWidget {
                   child: Container(
                     child: Container(
                       width: MediaQuery.of(context).size.width - 20,
-                      child: getText(index, remoteConfig),
+                      child: getText(index),
                     ),
                   ),
                 ),
@@ -87,27 +86,22 @@ class QuestionPage extends StatelessWidget {
   }
 }
 
-Widget getText(int index, RemoteConfig remoteConfig) {
+Widget getText(int index) {
   switch (index + 1) {
     case 1:
-      return new QuestionText(label: remoteConfig.getValue('goals').asString());
+      return QuestionText(label: Constants.defaultConfig['goals']);
     case 2:
-      return new QuestionText(
-          label: remoteConfig.getValue('support_goals').asString());
+      return QuestionText(label: Constants.defaultConfig['support_goals']);
     case 3:
-      return new QuestionText(
-          label: remoteConfig.getValue('biggest_challenges').asString());
+      return QuestionText(label: Constants.defaultConfig['biggest_challenges']);
     case 4:
-      return new QuestionText(
-          label: remoteConfig.getValue('eating_habits').asString());
+      return QuestionText(label: Constants.defaultConfig['eating_habits']);
     case 5:
-      return new QuestionText(
-          label: remoteConfig.getValue('everyday_look_like').asString());
+      return QuestionText(label: Constants.defaultConfig['everyday_look_like']);
     case 6:
-      return new QuestionText(
-          label: remoteConfig.getValue('focus_receipts').asString());
+      return QuestionText(label: Constants.defaultConfig['focus_receipts']);
     default:
-      return new QuestionText(label: 'Unknown question');
+      return QuestionText(label: 'Unknown question');
   }
 }
 

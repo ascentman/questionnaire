@@ -53,9 +53,12 @@ class WelcomeWidget extends AnimatedWidget {
       await remoteConfig.fetch(expiration: const Duration(seconds: 0));
       await remoteConfig.activateFetched();
       print('!!!!!!!!!YAY!!!!!');
-      for (RemoteConfigValue value in remoteConfig.getAll().values) {
-        print(value.asString());
+
+      for (String key in remoteConfig.getAll().keys) {
+        Constants.defaultConfig[key] = remoteConfig.getValue(key).asString();
       }
+
+      print(Constants.defaultConfig.values);
     } on FetchThrottledException catch (exception) {
       // Fetch throttled.
       print(exception);
@@ -99,7 +102,7 @@ class WelcomeWidget extends AnimatedWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => HomePage(remoteConfig: remoteConfig),
+                    builder: (context) => HomePage(),
                   ),
                 );
               },

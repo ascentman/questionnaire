@@ -3,13 +3,9 @@ import 'package:page_view_indicators/circle_page_indicator.dart';
 import 'package:questionnaire/constants.dart';
 import 'package:questionnaire/components/startButton.dart';
 import 'package:questionnaire/components/question_page.dart';
-import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 class HomePage extends StatefulWidget {
   static const id = 'questions_screen';
-  RemoteConfig remoteConfig;
-
-  HomePage({this.remoteConfig});
 
   @override
   HomePageState createState() {
@@ -18,14 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  final _items = [
-    Colors.blue,
-    Colors.orange,
-    Colors.green,
-    Colors.pink,
-    Colors.red,
-    Colors.amber,
-  ];
+  final _items = [1, 2, 3, 4, 5, 6];
   final _pageController = PageController();
   final _currentPageNotifier = ValueNotifier<int>(0);
 
@@ -111,8 +100,7 @@ class HomePageState extends State<HomePage> {
           itemCount: _items.length,
           controller: _pageController,
           itemBuilder: (BuildContext context, int index) {
-            return QuestionPage(
-                index: index, remoteConfig: widget.remoteConfig);
+            return QuestionPage(index: index);
           },
           onPageChanged: (int index) {
             _currentPageNotifier.value = index;
