@@ -60,12 +60,15 @@ class HomePageState extends State<HomePage> {
             StartButton(
               label: 'WEITER',
               margin: 16.0,
-              padding: 12.0,
+              padding: 16.0,
               borderRadius: 44.0,
               fontSize: 16.0,
               onPress: () {
                 print('wfef');
               },
+            ),
+            SizedBox(
+              height: 20,
             ),
           ],
         ),
@@ -116,19 +119,26 @@ class HomePageState extends State<HomePage> {
                       Flexible(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                              vertical: 20.0, horizontal: 10.0),
-                          child: Text(
-                            'Question 1 text fedwdwd',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
+                              vertical: 24.0, horizontal: 10.0),
+                          child: Container(
+                            child: Container(
+                              width: MediaQuery.of(context).size.width - 20,
+                              child: Text(
+                                'Question1 ddj dwjdk jwldw  dslsdlsdl dwldklwdklwd',
+                                maxLines: 3,
+                                textAlign: TextAlign.left,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
                           ),
                         ),
                       ),
                       Flexible(
-                        flex: 5,
+                        flex: 3,
                         child: ListView(
                           padding: EdgeInsets.all(0),
                           children: <Widget>[

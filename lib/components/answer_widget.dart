@@ -21,7 +21,7 @@ class AnswerWidget extends StatelessWidget {
           color: Constants.answerColor,
         ),
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+          padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 16.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6.0),
           ),
@@ -48,7 +48,7 @@ class AnswerWidget extends StatelessWidget {
                       label,
                       maxLines: 4,
                       textAlign: TextAlign.left,
-                      overflow: TextOverflow.visible,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontSize: 15.0,
                         color: Colors.black87,
