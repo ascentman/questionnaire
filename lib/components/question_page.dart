@@ -34,7 +34,7 @@ class QuestionPage extends StatelessWidget {
                   child: Container(
                     child: Container(
                       width: MediaQuery.of(context).size.width - 20,
-                      child: getText(index),
+                      child: getQuestionText(index),
                     ),
                   ),
                 ),
@@ -43,39 +43,7 @@ class QuestionPage extends StatelessWidget {
                 flex: 3,
                 child: ListView(
                   padding: EdgeInsets.all(0),
-                  children: <Widget>[
-                    AnswerButton(
-                      label: 'Answer 1 goes here',
-                      onPress: () {
-                        print('1 pressed');
-                      },
-                    ),
-                    AnswerButton(
-                      label: 'Answer 2 goes here',
-                      onPress: () {
-                        print('2 pressed');
-                      },
-                    ),
-                    AnswerButton(
-                      label: 'Answer 3 goes here',
-                      onPress: () {
-                        print('3 pressed');
-                      },
-                    ),
-                    AnswerButton(
-                      label: 'Answer 4 goes here',
-                      onPress: () {
-                        print('3 pressed');
-                      },
-                    ),
-                    AnswerButton(
-                      label:
-                          'Answer 5 goes here Answer 4 goes here d w w kwk w wddssdsdsdssd',
-                      onPress: () {
-                        print('4 pressed');
-                      },
-                    ),
-                  ],
+                  children: getAnswersList(index),
                 ),
               ),
             ],
@@ -86,7 +54,7 @@ class QuestionPage extends StatelessWidget {
   }
 }
 
-Widget getText(int index) {
+Widget getQuestionText(int index) {
   switch (index + 1) {
     case 1:
       return QuestionText(label: Constants.defaultConfig['goals']);
@@ -102,6 +70,26 @@ Widget getText(int index) {
       return QuestionText(label: Constants.defaultConfig['focus_receipts']);
     default:
       return QuestionText(label: 'Unknown question');
+  }
+}
+
+List<Widget> getAnswersList(int index) {
+  switch (index + 1) {
+    case 1:
+      List<String> list = [
+        Constants.defaultConfig['loose_weight'],
+        Constants.defaultConfig['more_energy'],
+        Constants.defaultConfig['be_sportier'],
+        Constants.defaultConfig['optimize_health']
+      ];
+      return list
+          .map((value) => AnswerButton(
+                label: value,
+                onPress: () {
+                  print('1');
+                },
+              ))
+          .toList();
   }
 }
 

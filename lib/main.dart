@@ -21,6 +21,7 @@ class Questionnaire extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return MaterialApp(
+      color: Colors.white,
       home: FutureBuilder<RemoteConfig>(
         future: setupRemoteConfig(),
         builder: (BuildContext context, AsyncSnapshot<RemoteConfig> snapshot) {
@@ -52,13 +53,9 @@ class WelcomeWidget extends AnimatedWidget {
       // Using default duration to force fetching from remote server.
       await remoteConfig.fetch(expiration: const Duration(seconds: 0));
       await remoteConfig.activateFetched();
-      print('!!!!!!!!!YAY!!!!!');
-
       for (String key in remoteConfig.getAll().keys) {
         Constants.defaultConfig[key] = remoteConfig.getValue(key).asString();
       }
-
-      print(Constants.defaultConfig.values);
     } on FetchThrottledException catch (exception) {
       // Fetch throttled.
       print(exception);
@@ -98,7 +95,6 @@ class WelcomeWidget extends AnimatedWidget {
               fontFamily: 'Bitter',
               fontSize: 24.0,
               onPress: () {
-                fetchFromRemoteConfig();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
