@@ -17,7 +17,7 @@ class QuestionPage extends StatelessWidget {
           decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.fitHeight,
-              image: AssetImage('assets/question_${index + 1}_header.png'),
+              image: AssetImage('assets/question_${index + 1}_header@3x.png'),
             ),
           ),
         ),
