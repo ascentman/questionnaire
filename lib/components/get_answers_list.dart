@@ -3,103 +3,141 @@ import 'package:questionnaire/constants.dart';
 import 'answer_button.dart';
 
 List<Widget> getAnswersList(int index) {
+  void checkAnswer(String value) {
+    if (Constants.answers.contains(value)) {
+      Constants.answers.remove(value);
+    } else {
+      Constants.answers.add(value);
+    }
+  }
+
   switch (index + 1) {
     case 1:
       List<String> list = [
-        Constants.defaultConfig['loose_weight'],
-        Constants.defaultConfig['more_energy'],
-        Constants.defaultConfig['be_sportier'],
-        Constants.defaultConfig['optimize_health']
+        'loose_weight',
+        'more_energy',
+        'be_sportier',
+        'optimize_health'
       ];
       return list
+          .asMap()
           .map(
-            (value) => AnswerButton(
-              label: value,
-              onPress: () {
-                print('1');
-              },
+            (index, value) => MapEntry(
+              index,
+              AnswerButton(
+                label: Constants.defaultConfig[value],
+                onPress: () {
+                  checkAnswer(list[index]);
+                },
+              ),
             ),
           )
+          .values
           .toList();
     case 2:
       List<String> list = [
-        Constants.defaultConfig['motivation'],
-        Constants.defaultConfig['guidance'],
-        Constants.defaultConfig['right_foods'],
-        Constants.defaultConfig['nutrition_tips']
+        'motivation',
+        'guidance',
+        'right_foods',
+        'nutrition_tips'
       ];
       return list
+          .asMap()
           .map(
-            (value) => AnswerButton(
-              label: value,
-              onPress: () {
-                print('1');
-              },
+            (index, value) => MapEntry(
+              index,
+              AnswerButton(
+                label: Constants.defaultConfig[value],
+                onPress: () {
+                  checkAnswer(list[index]);
+                },
+              ),
             ),
           )
+          .values
           .toList();
     case 3:
       List<String> list = [
-        Constants.defaultConfig['find_right_diet'],
-        Constants.defaultConfig['fast_food'],
-        Constants.defaultConfig['weekends'],
-        Constants.defaultConfig['eat_to_much']
+        'find_right_diet',
+        'fast_food',
+        'weekends',
+        'eat_to_much'
       ];
       return list
+          .asMap()
           .map(
-            (value) => AnswerButton(
-              label: value,
-              onPress: () {
-                print('1');
-              },
+            (index, value) => MapEntry(
+              index,
+              AnswerButton(
+                label: Constants.defaultConfig[value],
+                onPress: () {
+                  checkAnswer(list[index]);
+                },
+              ),
             ),
           )
+          .values
           .toList();
     case 4:
       List<String> list = [
-        Constants.defaultConfig['snacks'],
-        Constants.defaultConfig['eat_more_on_stressful_days'],
-        Constants.defaultConfig['eat_when_bored'],
-        Constants.defaultConfig['healthy']
+        'snacks',
+        'eat_more_on_stressful',
+        'eat_when_bored',
+        'healthy'
       ];
       return list
+          .asMap()
           .map(
-            (value) => AnswerButton(
-              label: value,
-              onPress: () {
-                print('1');
-              },
+            (index, value) => MapEntry(
+              index,
+              AnswerButton(
+                label: Constants.defaultConfig[value],
+                onPress: () {
+                  checkAnswer(list[index]);
+                },
+              ),
             ),
           )
+          .values
           .toList();
     case 5:
       List<String> list = [
-        Constants.defaultConfig['shift_work'],
-        Constants.defaultConfig['home'],
-        Constants.defaultConfig['normal_working_hours'],
-        Constants.defaultConfig['travel']
+        'shift_work',
+        'home',
+        'normal_working_hours',
+        'travel'
       ];
       return list
+          .asMap()
           .map(
-            (value) => AnswerButton(
-              label: value,
-              onPress: () {
-                print('1');
-              },
+            (index, value) => MapEntry(
+              index,
+              AnswerButton(
+                label: Constants.defaultConfig[value],
+                onPress: () {
+                  checkAnswer(list[index]);
+                },
+              ),
             ),
           )
+          .values
           .toList();
     case 6:
-      List<String> list = [
-        Constants.defaultConfig['vegan'],
-        Constants.defaultConfig['vegetarian'],
-        Constants.defaultConfig['low_carb'],
-        Constants.defaultConfig['balanced']
-      ];
+      List<String> list = ['vegan', 'vegetarian', 'low_carb', 'balanced'];
       return list
+          .asMap()
           .map(
-            (value) => AnswerButton(label: value),
+            (index, value) => MapEntry(
+              index,
+              AnswerButton(
+                label: Constants.defaultConfig[value],
+                onPress: () {
+                  checkAnswer(list[index]);
+                },
+              ),
+            ),
           )
+          .values
           .toList();
   }
   return null;

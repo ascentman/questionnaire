@@ -3,20 +3,44 @@ import 'package:page_view_indicators/circle_page_indicator.dart';
 import 'package:questionnaire/constants.dart';
 import 'package:questionnaire/components/startButton.dart';
 import 'package:questionnaire/components/question_page.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 
 class HomePage extends StatefulWidget {
   static const id = 'questions_screen';
 
+  static FirebaseAnalytics analytics = FirebaseAnalytics();
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
+
   @override
   HomePageState createState() {
-    return new HomePageState();
+    return new HomePageState(analytics, observer);
   }
 }
 
 class HomePageState extends State<HomePage> {
+  final FirebaseAnalyticsObserver observer;
+  final FirebaseAnalytics analytics;
   final _items = 6;
   final _pageController = PageController();
   final _currentPageNotifier = ValueNotifier<int>(0);
+
+  HomePageState(this.analytics, this.observer);
+
+  Future<void> _testSetUserProperty(String name, String value) async {
+    await analytics.setUserProperty(name: name, value: value);
+  }
+
+  Future<void> _sendPressed() async {
+    analytics.logEvent(name: 'send_pressed');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    analytics.logEvent(name: 'questionnaire_started');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +91,10 @@ class HomePageState extends State<HomePage> {
                           duration: Duration(milliseconds: 400),
                           curve: Curves.easeInCubic);
                     } else {
-                      print('send!!!');
+                      for (String property in Constants.answers) {
+                        _testSetUserProperty(property, 'answer was chosen');
+                        _sendPressed();
+                      }
                     }
                   });
                 },

@@ -6,8 +6,8 @@ import 'package:questionnaire/screens/homepage_screen.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 class Welcome extends StatefulWidget {
-  Welcome({this.remoteConfig});
   final RemoteConfig remoteConfig;
+  Welcome({this.remoteConfig});
 
   void fetchFromRemoteConfig() async {
     try {

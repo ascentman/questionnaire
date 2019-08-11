@@ -3,10 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'constants.dart';
 import 'screens/welcome.dart';
+import 'package:firebase_analytics/observer.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 void main() => runApp(Questionnaire());
 
 class Questionnaire extends StatelessWidget {
+  static FirebaseAnalytics analytics = FirebaseAnalytics();
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -18,6 +24,7 @@ class Questionnaire extends StatelessWidget {
     ]);
     return MaterialApp(
       color: Colors.white,
+      navigatorObservers: <NavigatorObserver>[observer],
       home: FutureBuilder<RemoteConfig>(
         future: setupRemoteConfig(),
         builder: (BuildContext context, AsyncSnapshot<RemoteConfig> snapshot) {

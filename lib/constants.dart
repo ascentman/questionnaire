@@ -26,7 +26,7 @@ class Constants {
     'weekends': 'Die Kontrolle am Wochenende fällt mir schwer',
     'eat_to_much': 'Ich esse generell viel',
     'snacks': 'Ich esse viele Snacks zwischen meinen Mahlzeiten',
-    'eat_more_on_stressful_days': 'An stressigen Tagen esse ich meistens mehr',
+    'eat_more_on_stressful': 'An stressigen Tagen esse ich meistens mehr',
     'eat_when_bored': 'Ich esse oft wenn mir langweilig ist',
     'healthy': 'Ich ernähre mich gesund',
     'shift_work': 'Ich arbeite in Schichten',
@@ -38,4 +38,6 @@ class Constants {
     'low_carb': 'Low Carb',
     'balanced': 'Ausgewogen'
   };
+
+  static List<String> answers = [];
 }
