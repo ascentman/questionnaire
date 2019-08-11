@@ -5,6 +5,7 @@ import 'package:questionnaire/components/startButton.dart';
 import 'package:questionnaire/components/question_page.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class HomePage extends StatefulWidget {
   static const id = 'questions_screen';
@@ -34,6 +35,28 @@ class HomePageState extends State<HomePage> {
 
   Future<void> _sendPressed() async {
     analytics.logEvent(name: 'send_pressed');
+  }
+
+  Future<void> _sendAlert(BuildContext _context) async {
+    return Alert(
+      context: _context,
+      type: AlertType.success,
+      title: "Success",
+      desc: "Answers are sent to Firebase Analytics",
+      buttons: [
+        DialogButton(
+          color: Constants.mainAppColor,
+          child: Text(
+            "OK",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: () {
+            Navigator.of(_context).pop();
+          },
+          width: 120,
+        )
+      ],
+    ).show();
   }
 
   @override
@@ -93,10 +116,13 @@ class HomePageState extends State<HomePage> {
                     } else {
                       for (String property in Constants.answers) {
                         _testSetUserProperty(property, 'answer was chosen');
-                        _sendPressed();
                       }
                     }
                   });
+                  if (_pageController.page == _items - 1) {
+                    _sendPressed();
+                    _sendAlert(context);
+                  }
                 },
               ),
             ],
