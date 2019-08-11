@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  final _items = [1, 2, 3, 4, 5, 6];
+  final _items = 6;
   final _pageController = PageController();
   final _currentPageNotifier = ValueNotifier<int>(0);
 
@@ -62,7 +62,7 @@ class HomePageState extends State<HomePage> {
                 fontSize: 16.0,
                 onPress: () {
                   setState(() {
-                    if (_pageController.page < _items.length - 1) {
+                    if (_pageController.page < _items - 1) {
                       _pageController.nextPage(
                           duration: Duration(milliseconds: 400),
                           curve: Curves.easeInCubic);
@@ -97,7 +97,7 @@ class HomePageState extends State<HomePage> {
     return Container(
       color: Theme.of(context).scaffoldBackgroundColor,
       child: PageView.builder(
-          itemCount: _items.length,
+          itemCount: _items,
           controller: _pageController,
           itemBuilder: (BuildContext context, int index) {
             return QuestionPage(index: index);
@@ -115,7 +115,7 @@ class HomePageState extends State<HomePage> {
         selectedSize: 12.0,
         dotColor: Constants.inactivePageIndicatorColor,
         selectedDotColor: Constants.mainAppColor,
-        itemCount: _items.length,
+        itemCount: _items,
         currentPageNotifier: _currentPageNotifier,
       ),
     );

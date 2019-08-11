@@ -54,11 +54,12 @@ class _AnswerButtonState extends State<AnswerButton> {
                     width: MediaQuery.of(context).size.width - 80,
                     child: Text(
                       widget.label,
-                      maxLines: 4,
+                      maxLines: 3,
                       textAlign: TextAlign.left,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontSize: 15.0,
+                        fontWeight: FontWeight.w400,
                         color: Colors.black87,
                       ),
                     ),
