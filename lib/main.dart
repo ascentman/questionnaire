@@ -41,7 +41,7 @@ class Questionnaire extends StatelessWidget {
 Future<RemoteConfig> setupRemoteConfig() async {
   final RemoteConfig remoteConfig = await RemoteConfig.instance;
   // Enable developer mode to relax fetch throttling
-  remoteConfig.setConfigSettings(RemoteConfigSettings(debugMode: true));
+  remoteConfig.setConfigSettings(RemoteConfigSettings(debugMode: false));
   remoteConfig.setDefaults(Constants.defaultConfig);
   return remoteConfig;
 }
